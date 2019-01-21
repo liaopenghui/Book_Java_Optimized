@@ -22,5 +22,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         val classes = arrayOf<Class<*>>(IDBQuery::class.java)
         val newProxyInstance =Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), classes, JdkDBQueryHandler()) as IDBQuery
        toast(newProxyInstance.query())
+
+
     }
 }
