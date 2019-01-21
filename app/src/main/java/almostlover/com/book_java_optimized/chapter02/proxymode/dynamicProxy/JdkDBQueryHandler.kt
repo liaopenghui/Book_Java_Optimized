@@ -5,8 +5,6 @@ import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
 
 class JdkDBQueryHandler:InvocationHandler{
-
-
     var realDBQuery: RealDBQuery? = null
 
     override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any {
@@ -15,5 +13,4 @@ class JdkDBQueryHandler:InvocationHandler{
         }
         return realDBQuery!!.query()
     }
-
 }
