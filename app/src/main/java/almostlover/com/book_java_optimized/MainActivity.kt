@@ -1,5 +1,8 @@
 package almostlover.com.book_java_optimized
 
+import almostlover.com.book_java_optimized.chapter02.decorationpattern.PacketBodyCreator
+import almostlover.com.book_java_optimized.chapter02.decorationpattern.PacketHTMLHeaderCreator
+import almostlover.com.book_java_optimized.chapter02.decorationpattern.PacketHTTPHTMLHeaderCreator
 import almostlover.com.book_java_optimized.chapter02.flyweightpattern.ManagerFactory
 import almostlover.com.book_java_optimized.chapter02.proxymode.DBQueryProxy
 import almostlover.com.book_java_optimized.chapter02.proxymode.IDBQuery
@@ -18,7 +21,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_main)
 //        callDynamicProxy()
 
-        flyweightpattern();
+//        flyweightpattern()
+        decorationPattern()
     }
 
     private fun flyweightpattern() {
@@ -36,14 +40,17 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         lifeManager.getResult()
         lifeManager1.getResult()
         lifeManager12.getResult()
-
-
-
     }
 
     private fun callDynamicProxy() {
         val classes = arrayOf<Class<*>>(IDBQuery::class.java)
         val newProxyInstance =Proxy.newProxyInstance(IDBQuery::class.java.classLoader, classes, JdkDBQueryHandler()) as IDBQuery
        toast(newProxyInstance.query())
+    }
+
+
+    fun decorationPattern(){
+        val packetHTMLHeaderCreator = PacketHTTPHTMLHeaderCreator(PacketHTMLHeaderCreator(PacketBodyCreator()))
+       toast(packetHTMLHeaderCreator.handleContent())
     }
 }
