@@ -4,6 +4,8 @@ import almostlover.com.book_java_optimized.chapter02.decorationpattern.PacketBod
 import almostlover.com.book_java_optimized.chapter02.decorationpattern.PacketHTMLHeaderCreator
 import almostlover.com.book_java_optimized.chapter02.decorationpattern.PacketHTTPHTMLHeaderCreator
 import almostlover.com.book_java_optimized.chapter02.flyweightpattern.ManagerFactory
+import almostlover.com.book_java_optimized.chapter02.observerpattern.Police
+import almostlover.com.book_java_optimized.chapter02.observerpattern.Theif
 import almostlover.com.book_java_optimized.chapter02.proxymode.DBQueryProxy
 import almostlover.com.book_java_optimized.chapter02.proxymode.IDBQuery
 import almostlover.com.book_java_optimized.chapter02.proxymode.dynamicProxy.JdkDBQueryHandler
@@ -22,7 +24,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
 //        callDynamicProxy()
 
 //        flyweightpattern()
-        decorationPattern()
+//        decorationPattern()
+        observerPattern()
     }
 
     private fun flyweightpattern() {
@@ -52,5 +55,19 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
     fun decorationPattern(){
         val packetHTMLHeaderCreator = PacketHTTPHTMLHeaderCreator(PacketHTMLHeaderCreator(PacketBodyCreator()))
        toast(packetHTMLHeaderCreator.handleContent())
+    }
+
+    fun observerPattern(){
+        var policeA = Police()
+        var policeB = Police()
+        var policeC = Police()
+
+        var theif = Theif()
+        theif.attach(policeA)
+        theif.attach(policeB)
+        theif.attach(policeC)
+
+        theif.info()
+
     }
 }
